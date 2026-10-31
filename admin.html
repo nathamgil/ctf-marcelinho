@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel do professor · CTF Marcelinho</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A2F63">
+<link rel="icon" href="fotos/logo-ctf.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilo.css?v=20261031153615">
+<link rel="stylesheet" href="assets/admin.css?v=20261031153615">
+</head>
+<body class="adm">
+
+<div class="faixa-demo"><b>Modo demonstração.</b> Alunos, presenças e duplas de exemplo, marcados "(exemplo)", guardados só neste aparelho.</div>
+
+<!-- LOGIN -->
+<main class="wrap" id="tela-login">
+  <section class="login-box">
+    <img src="fotos/logo-ctf.jpg" alt="" width="72" height="72" style="border-radius:50%">
+    <h1>Painel do professor</h1>
+    <p>Alunos, mensalidades, chamada, turmas, Copa e avisos.</p>
+    <div class="demo-cred"><b>Demonstração:</b> e-mail <code>professor@demo</code> e senha <code>penta5</code>.</div>
+    <form class="form" id="form-login" novalidate>
+      <div class="campo"><label for="lg-email">E-mail</label><input id="lg-email" type="email" autocomplete="username" required></div>
+      <div class="campo"><label for="lg-senha">Senha</label><input id="lg-senha" type="password" autocomplete="current-password" required></div>
+      <p class="erro-campo" id="lg-erro" role="alert" hidden></p>
+      <button class="btn btn-mar" type="submit">Entrar</button>
+      <button class="btn btn-linha" type="button" id="lg-demo">Preencher com o login de demonstração</button>
+    </form>
+  </section>
+</main>
+
+<div id="tela-painel" hidden>
+<header class="adm-topo">
+  <div class="wrap adm-topo-in">
+    <a class="marca marca-esc" href="index.html" title="Ver o site">
+      <img src="fotos/logo-ctf.jpg" alt="" width="44" height="44">
+      <span><b>CTF Marcelinho</b><small>Painel do professor</small></span>
+    </a>
+    <a class="btn btn-branco mini so-largo" href="index.html" target="_blank" rel="noopener">Ver o site</a>
+    <button class="btn btn-branco mini" id="sair" type="button">Sair</button>
+  </div>
+  <nav class="wrap adm-abas" role="tablist" aria-label="Seções do painel">
+    <button class="adm-aba" role="tab" data-aba="geral" aria-selected="true">Visão geral</button>
+    <button class="adm-aba" role="tab" data-aba="alunos" aria-selected="false">Alunos <span class="bolha" id="bolha-atraso"></span></button>
+    <button class="adm-aba" role="tab" data-aba="presenca" aria-selected="false">Presença</button>
+    <button class="adm-aba" role="tab" data-aba="turmas" aria-selected="false">Turmas</button>
+    <button class="adm-aba" role="tab" data-aba="copa" aria-selected="false">Copa e eventos <span class="bolha" id="bolha-copa"></span></button>
+    <button class="adm-aba" role="tab" data-aba="avisos" aria-selected="false">Avisos</button>
+    <button class="adm-aba" role="tab" data-aba="ajustes" aria-selected="false">Ajustes</button>
+  </nav>
+</header>
+
+<main class="wrap adm-main">
+
+  <section class="adm-painel" data-painel="geral" data-ativa>
+    <h1 class="adm-tit" id="geral-tit">Hoje</h1>
+    <div class="kpis" id="kpis"></div>
+    <div class="cols">
+      <div class="bloco"><div class="bloco-cab"><h2>Aulas de hoje</h2><button class="lnk" type="button" data-ir="presenca">Fazer chamada →</button></div><div id="g-aulas"></div></div>
+      <div class="bloco"><div class="bloco-cab"><h2>Mensalidades atrasadas</h2><button class="lnk" type="button" data-ir="alunos" data-filtro="atrasada">Ver todas →</button></div><div id="g-atraso"></div></div>
+      <div class="bloco"><div class="bloco-cab"><h2>Aulas experimentais pedidas no site</h2></div><div id="g-exp"></div></div>
+      <div class="bloco"><div class="bloco-cab"><h2>Próximos eventos</h2><button class="lnk" type="button" data-ir="copa">Copa e eventos →</button></div><div id="g-eventos"></div></div>
+    </div>
+  </section>
+
+  <section class="adm-painel" data-painel="alunos">
+    <div class="adm-cab">
+      <h1 class="adm-tit">Alunos e planos</h1>
+      <p class="adm-sub">Mensalidade em dia ou atrasada, frequência do mês e ficha com a avaliação por fundamento. Registrar pagamento empurra o vencimento um mês.</p>
+    </div>
+    <div class="filtros">
+      <div class="seg" id="f-status" role="group" aria-label="Filtrar por mensalidade">
+        <button type="button" data-v="todos" aria-pressed="true">Todos</button>
+        <button type="button" data-v="emdia" aria-pressed="false">Em dia</button>
+        <button type="button" data-v="vence" aria-pressed="false">Vence logo</button>
+        <button type="button" data-v="atrasada" aria-pressed="false">Atrasada</button>
+      </div>
+      <div class="campo campo-inline"><label for="f-turma" class="sr">Turma</label><select id="f-turma"><option value="">Todas as turmas</option></select></div>
+      <div class="campo campo-inline"><label for="f-busca" class="sr">Buscar aluno</label><input id="f-busca" type="search" placeholder="Buscar pelo nome"></div>
+      <button class="btn btn-mar mini" type="button" id="bt-novo-aluno">+ Aluno</button>
+    </div>
+    <div id="lista-alunos"></div>
+  </section>
+
+  <section class="adm-painel" data-painel="presenca">
+    <div class="adm-cab">
+      <h1 class="adm-tit">Presença por turma</h1>
+      <p class="adm-sub">Escolha a turma e o dia, toque em quem veio e salve. A frequência aparece na área do aluno.</p>
+    </div>
+    <div class="filtros">
+      <div class="campo campo-inline"><label for="p-turma">Turma</label><select id="p-turma"></select></div>
+      <div class="campo campo-inline"><label for="p-dia">Dia</label><select id="p-dia"></select></div>
+    </div>
+    <div class="cols cols-pres">
+      <div class="bloco"><div class="bloco-cab"><h2 id="p-tit">Chamada</h2><span class="nota" id="p-conta"></span></div><div id="p-lista" class="chamada"></div>
+        <div class="acoes"><button class="btn btn-mar" type="button" id="p-salvar">Salvar chamada</button><button class="btn btn-linha mini" type="button" id="p-todos">Marcar todos</button></div>
+        <p class="ok-msg" id="p-ok" role="status" hidden></p>
+      </div>
+      <div class="bloco"><div class="bloco-cab"><h2>Frequência do mês por turma</h2></div><div id="p-resumo"></div></div>
+    </div>
+  </section>
+
+  <section class="adm-painel" data-painel="turmas">
+    <div class="adm-cab">
+      <h1 class="adm-tit">Turmas e horários</h1>
+      <p class="adm-sub">O que você salvar aqui aparece na grade de turmas do site e no formulário de aula experimental.</p>
+    </div>
+    <div id="lista-turmas"></div>
+    <div class="acoes"><button class="btn btn-linha" type="button" id="bt-nova-turma">+ Turma</button></div>
+  </section>
+
+  <section class="adm-painel" data-painel="copa">
+    <div class="adm-cab">
+      <h1 class="adm-tit">Copa Marcelinho e eventos</h1>
+      <p class="adm-sub">Inscrições que chegam pelo site entram como pendentes. Lance o placar e a tabela da página da Copa atualiza.</p>
+    </div>
+    <div class="seg" id="c-cat" role="group" aria-label="Categoria"></div>
+    <div class="cols">
+      <div class="bloco"><div class="bloco-cab"><h2>Duplas inscritas</h2><span class="nota" id="c-conta"></span></div><div id="c-inscritos"></div></div>
+      <div class="bloco"><div class="bloco-cab"><h2>Jogos e placares</h2><a class="lnk" href="copa.html#tabela" target="_blank" rel="noopener">Ver no site →</a></div><div id="c-jogos"></div>
+        <div class="acoes"><button class="btn btn-linha mini" type="button" id="bt-novo-jogo">+ Jogo</button></div></div>
+    </div>
+    <div class="bloco" style="margin-top:1rem">
+      <div class="bloco-cab"><h2>Agenda de eventos</h2></div>
+      <div id="lista-eventos"></div>
+      <form class="form-linha" id="form-evento">
+        <div class="campo"><label for="ev-nome">Evento</label><input id="ev-nome" required placeholder="Ex.: Desafio do Penta"></div>
+        <div class="campo"><label for="ev-data">Data</label><input id="ev-data" type="date" required></div>
+        <div class="campo"><label for="ev-hora">Hora</label><input id="ev-hora" type="time" value="08:00"></div>
+        <div class="campo"><label for="ev-local">Local</label><input id="ev-local" value="Arena do CTF · Clube Espanhol"></div>
+        <button class="btn btn-mar" type="submit">Adicionar</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="adm-painel" data-painel="avisos">
+    <div class="adm-cab">
+      <h1 class="adm-tit">Avisos para os alunos</h1>
+      <p class="adm-sub">O aviso aparece na área do aluno de quem for do público escolhido. Fixado fica sempre no topo.</p>
+    </div>
+    <div class="cols">
+      <form class="bloco form" id="form-aviso">
+        <div class="bloco-cab"><h2>Novo aviso</h2></div>
+        <div class="campo"><label for="av-tit">Título</label><input id="av-tit" required maxlength="60" placeholder="Ex.: Sábado tem aulão"></div>
+        <div class="campo"><label for="av-txt">Mensagem</label><textarea id="av-txt" rows="4" required maxlength="400"></textarea></div>
+        <div class="campo"><label for="av-para">Quem vê</label><select id="av-para"></select></div>
+        <label class="check"><input type="checkbox" id="av-fixo"> Fixar no topo</label>
+        <div><button class="btn btn-mar" type="submit">Publicar aviso</button></div>
+        <p class="ok-msg" id="av-ok" role="status" hidden></p>
+      </form>
+      <div class="bloco"><div class="bloco-cab"><h2>Avisos publicados</h2><a class="lnk" href="aluno.html" target="_blank" rel="noopener">Ver como aluno →</a></div><div id="lista-avisos"></div></div>
+    </div>
+  </section>
+
+  <section class="adm-painel" data-painel="ajustes">
+    <div class="adm-cab">
+      <h1 class="adm-tit">Ajustes</h1>
+      <p class="adm-sub">Valores dos planos (aparecem na área do aluno). Enquanto estiver vazio, o aluno vê "a confirmar".</p>
+    </div>
+    <div class="cols">
+      <form class="bloco form" id="form-planos"><div class="bloco-cab"><h2>Planos</h2></div><div id="planos-campos"></div><div><button class="btn btn-mar" type="submit">Salvar valores</button></div><p class="ok-msg" id="pl-ok" role="status" hidden></p></form>
+      <div class="bloco"><div class="bloco-cab"><h2>Demonstração</h2></div><p>Apaga tudo o que foi mexido neste aparelho e volta aos dados de exemplo.</p><div class="acoes"><button class="btn btn-perigo" type="button" id="bt-recomecar">Recomeçar a demonstração</button></div></div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<dialog class="ficha" id="ficha" aria-labelledby="ficha-tit">
+  <form method="dialog" class="ficha-in" id="ficha-form">
+    <div class="ficha-cab"><h2 id="ficha-tit">Aluno</h2><button class="fechar" value="cancelar" aria-label="Fechar">×</button></div>
+    <div id="ficha-corpo"></div>
+  </form>
+</dialog>
+
+<script src="assets/config.js?v=20261031153615"></script>
+<script src="assets/demo.js?v=20261031153615"></script>
+<script src="assets/admin.js?v=20261031153615"></script>
+</body>
+</html>

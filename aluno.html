@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área do aluno · CTF Marcelinho</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A2F63">
+<link rel="icon" href="fotos/logo-ctf.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilo.css?v=20261031153615">
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="index.html">
+      <img src="fotos/logo-ctf.jpg" alt="" width="46" height="46">
+      <span><b>CTF Marcelinho</b><small>Área do aluno</small></span>
+    </a>
+    <button class="bt-menu" type="button" aria-controls="menu" aria-expanded="false"><span></span><b class="sr">Abrir menu</b></button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="index.html">Site</a>
+      <a href="index.html#turmas">Turmas</a>
+      <a href="copa.html">Copa Marcelinho</a>
+      <a href="aluno.html" aria-current="page">Área do aluno</a>
+      <button class="btn btn-linha" id="sair" type="button" hidden>Sair</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- LOGIN -->
+  <section class="login-box" id="tela-login">
+    <span class="olho">Área do aluno</span>
+    <h1>Entrar</h1>
+    <p>Seu plano, sua frequência, sua evolução e os avisos do professor num lugar só.</p>
+    <div class="demo-cred"><b>Demonstração:</b> e-mail <code>aluno@demo</code> e senha <code>1234</code>. Os dados são de exemplo.</div>
+    <form class="form" id="form-login" novalidate>
+      <div class="campo"><label for="lg-email">E-mail</label><input id="lg-email" type="email" autocomplete="username" required></div>
+      <div class="campo"><label for="lg-senha">Senha</label><input id="lg-senha" type="password" autocomplete="current-password" required></div>
+      <p class="erro-campo" id="lg-erro" role="alert" hidden></p>
+      <button class="btn btn-mar" type="submit">Entrar</button>
+      <button class="btn btn-linha" type="button" id="lg-demo">Preencher com o login de demonstração</button>
+    </form>
+  </section>
+
+  <!-- PAINEL DO ALUNO -->
+  <section class="painel-aluno" id="tela-aluno" hidden>
+    <div class="ola">
+      <div>
+        <span class="olho" id="al-nivel">Turma</span>
+        <h1 id="al-nome">Fala!</h1>
+        <p id="al-turmas"></p>
+      </div>
+      <span class="estrelas g" data-estrelas></span>
+    </div>
+
+    <div class="grade-al">
+      <article class="box box-mar c5" aria-labelledby="h-plano">
+        <h2 id="h-plano">Plano e mensalidade</h2>
+        <p class="grande" id="al-plano">—</p>
+        <div style="margin:.8rem 0 1rem" id="al-status"></div>
+        <div class="linha-info"><span>Vencimento</span><b id="al-venc">—</b></div>
+        <div class="linha-info"><span>Valor</span><b id="al-valor">—</b></div>
+        <div class="linha-info"><span>Aluno desde</span><b id="al-desde">—</b></div>
+        <p style="margin-top:1.2rem"><a class="btn btn-ouro" id="al-pagar" href="#" target="_blank" rel="noopener">Mandar comprovante no WhatsApp</a></p>
+      </article>
+
+      <article class="box c7" aria-labelledby="h-freq">
+        <h2 id="h-freq">Frequência do mês</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:1.2rem;align-items:baseline">
+          <p class="grande" id="al-pct" style="color:var(--mar)">—</p>
+          <p id="al-freq-txt"></p>
+        </div>
+        <div class="cal" id="al-cal" aria-label="Calendário de presença do mês"></div>
+        <div class="legenda"><span><i style="background:var(--mar)"></i>Presente</span><span><i style="border:2px solid var(--erro)"></i>Faltou</span><span><i style="outline:2px solid var(--ouro)"></i>Hoje</span></div>
+      </article>
+
+      <article class="box c8" aria-labelledby="h-evo">
+        <h2 id="h-evo">Evolução por fundamento</h2>
+        <div class="fund-bts" id="al-fund-bts" role="group" aria-label="Escolha o fundamento"></div>
+        <div class="grafico" id="al-grafico"></div>
+        <div class="barras-f" id="al-barras"></div>
+        <p class="nota" style="margin-top:.8rem">Nota de 0 a 10 dada pelo professor na avaliação do mês. A marca dourada é a sua primeira avaliação.</p>
+      </article>
+
+      <article class="box c4" aria-labelledby="h-prox">
+        <h2 id="h-prox">Próximas aulas</h2>
+        <ul class="lista-sec" id="al-aulas"></ul>
+        <h2 style="margin-top:1.6rem">Próximos eventos</h2>
+        <ul class="lista-sec" id="al-eventos"></ul>
+      </article>
+
+      <article class="box c12" aria-labelledby="h-avisos">
+        <h2 id="h-avisos">Avisos do professor</h2>
+        <div id="al-avisos"></div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <p class="fim" style="margin:0;border:0;padding:0">© <span data-ano>2026</span> CTF Marcelinho · Área do aluno em modo demonstração (dados de exemplo neste aparelho).</p>
+  </div>
+</footer>
+
+<script src="assets/config.js?v=20261031153615"></script>
+<script src="assets/demo.js?v=20261031153615"></script>
+<script src="assets/site.js?v=20261031153615"></script>
+<script src="assets/aluno.js?v=20261031153615"></script>
+</body>
+</html>

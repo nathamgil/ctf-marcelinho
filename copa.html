@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copa Marcelinho de Futevôlei · CTF Marcelinho</title>
+<meta name="description" content="Copa Marcelinho de Futevôlei: categorias, inscrição de duplas e tabela de jogos com resultados.">
+<meta name="theme-color" content="#0A2F63">
+<link rel="icon" href="fotos/logo-ctf.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilo.css?v=20261031153615">
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="index.html">
+      <img src="fotos/logo-ctf.jpg" alt="" width="46" height="46">
+      <span><b>CTF Marcelinho</b><small>Futevôlei · Clube Espanhol</small></span>
+    </a>
+    <button class="bt-menu" type="button" aria-controls="menu" aria-expanded="false"><span></span><b class="sr">Abrir menu</b></button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="trajetoria.html">Trajetória</a>
+      <a href="index.html#metodo">Metodologia</a>
+      <a href="index.html#turmas">Turmas</a>
+      <a href="copa.html" aria-current="page">Copa Marcelinho</a>
+      <a href="aluno.html">Área do aluno</a>
+      <a class="btn btn-mar" href="#inscricao">Inscrever dupla</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="abre">
+  <div class="wrap abre-grid">
+    <div>
+      <span class="olho">Torneio do CT</span>
+      <h1>Copa Marcelinho de Futevôlei.</h1>
+      <p class="lead">O torneio do CTF já foi para a 3ª edição. Aqui você vê as categorias, inscreve a sua dupla e acompanha a tabela de jogos durante a copa.</p>
+      <p style="margin-top:1.6rem" class="hero-acoes"><a class="btn btn-mar btn-seta" href="#inscricao">Inscrever minha dupla</a><a class="btn btn-linha" href="#tabela">Ver tabela de jogos</a></p>
+    </div>
+    <figure class="abre-foto">
+      <img src="fotos/copa-3a-edicao.jpg" alt="Arte oficial da 3ª Copa Marcelinho Futevôlei" width="515" height="640">
+      <figcaption>Arte oficial da 3ª Copa Marcelinho (outubro de 2025).</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="wrap">
+    <span class="olho">Próxima edição</span>
+    <h2 class="tit">O que já <em>sabemos.</em></h2>
+    <dl class="info-copa" style="margin-top:1.4rem">
+      <div><dt>Data</dt><dd>A confirmar</dd></div>
+      <div><dt>Local</dt><dd>Arena do CTF · Clube Espanhol</dd></div>
+      <div><dt>Formato</dt><dd>Duplas, por categoria</dd></div>
+      <div><dt>Inscrição</dt><dd>Valor a confirmar</dd></div>
+    </dl>
+    <p class="nota" style="margin-top:.8rem">Data, valor e regulamento saem aqui e no Instagram <a href="https://www.instagram.com/ctfmarcelinho/" target="_blank" rel="noopener">@ctfmarcelinho</a>.</p>
+
+    <h2 class="tit" style="margin-top:clamp(2.5rem,6vw,4rem)">Categorias <span class="tag-ex">exemplo</span></h2>
+    <div class="cats" id="cats" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="secao secao-branca" id="inscricao">
+  <div class="wrap exp-grid">
+    <figure class="exp-foto">
+      <img src="fotos/arena-bicicleta.jpg" alt="Atleta em voo acertando a bola na arena do CTF" width="480" height="640" loading="lazy">
+      <figcaption class="selo-txt"><b>Fecha a dupla</b>e garante a vaga antes de esgotar.</figcaption>
+    </figure>
+    <div>
+      <span class="olho">Inscrição</span>
+      <h2 class="tit">Inscreva <em>sua dupla.</em></h2>
+      <p class="lead" style="margin-bottom:1.6rem">A vaga fica reservada e a mensagem vai pronta para o WhatsApp do professor, que confirma a inscrição.</p>
+      <form class="form" id="form-copa" novalidate>
+        <div class="campo"><fieldset><legend>Categoria</legend><div class="opcoes" id="copa-cats"></div></fieldset></div>
+        <div class="dois">
+          <div class="campo"><label for="copa-a1">Atleta 1</label><input id="copa-a1" autocomplete="name" required></div>
+          <div class="campo"><label for="copa-a2">Atleta 2</label><input id="copa-a2" required></div>
+        </div>
+        <div class="campo"><label for="copa-tel">WhatsApp para contato (com DDD)</label><input id="copa-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="(71) 9 0000-0000" required></div>
+        <p class="erro-campo" id="copa-erro" role="alert" hidden></p>
+        <div><button class="btn btn-zap" type="submit">Reservar vaga e enviar</button></div>
+        <div class="ok-box" id="copa-ok" role="status" hidden><b>Vaga reservada!</b> A inscrição aparece como pendente até o professor confirmar. Se o WhatsApp não abriu, <a href="#">toque aqui</a>.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="tabela">
+  <div class="wrap">
+    <div class="cab">
+      <div>
+        <span class="olho">Chaves e resultados</span>
+        <h2 class="tit">Tabela <em>de jogos.</em></h2>
+      </div>
+      <p class="lead">O professor lança o placar no painel e a tabela atualiza aqui. <span class="tag-ex">Duplas e placares de exemplo</span></p>
+    </div>
+    <div class="abas" id="chave-abas" role="tablist" aria-label="Categorias"></div>
+    <div id="chaves" aria-live="polite"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape-in">
+      <div><b>CTF Marcelinho</b><br>Futevôlei · Clube Espanhol · Salvador<br><span class="estrelas" data-estrelas></span></div>
+      <nav aria-label="Rodapé"><a href="index.html">Início</a><a href="trajetoria.html">Trajetória</a><a href="index.html#turmas">Turmas</a><a href="aluno.html">Área do aluno</a><a href="admin.html">Painel do professor</a></nav>
+    </div>
+    <p class="fim">© <span data-ano>2026</span> CTF Marcelinho. Site demonstração feito pela Zync: categorias, duplas e placares de exemplo.</p>
+  </div>
+</footer>
+
+<script src="assets/config.js?v=20261031153615"></script>
+<script src="assets/demo.js?v=20261031153615"></script>
+<script src="assets/site.js?v=20261031153615"></script>
+</body>
+</html>
